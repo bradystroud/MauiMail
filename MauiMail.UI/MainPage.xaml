@@ -3,21 +3,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:ui="clr-namespace:MauiMail.UI"
-             xmlns:components="clr-namespace:MauiMail.UI.Components"
+             xmlns:controls="clr-namespace:MauiMail.UI.Controls"
              x:Class="MauiMail.UI.MainPage"
              x:DataType="ui:MainPage">
-    
-    <ListView ItemsSource="{Binding VisibleEmails}" RowHeight="100">
-        <ListView.HeaderTemplate>
-            <DataTemplate>
-                <Label Text="{Binding MessagesCount, StringFormat='{0} Messages'}"></Label>
-            </DataTemplate>
-        </ListView.HeaderTemplate>
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <components:EmailPreview />
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
-    
+    <ListView ItemsSource="{Binding Emails}" RowHeight="100" x:Name="MessageRow">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <controls:EmailRow Email="{Binding .}" /> 
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 </ContentPage>

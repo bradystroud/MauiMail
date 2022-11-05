@@ -4,39 +4,42 @@ namespace MauiMail.UI;
 
 public partial class MainPage : ContentPage
 {
-    public IList<Message> Emails { get; set; } = new List<Message>
+    public IList<Mail> Emails { get; set; } = new List<Mail>
     {
-        new Message
+        new Mail
         {
-            From = "John Doe",
-            Subject = "Hello World 1",
-            Body = "This is the first test message from today",
-            Date = DateTime.Today,
+            From = "Jack",
+            Subject = "Hello 1",
+            Body = "How are you?",
+            Date = DateTime.Now
         },
-        new Message
+        new Mail
         {
-            From = "John Doe",
-            Subject = "Hello World 2",
-            Body = "This is the second test message from today",
-            Date = DateTime.Today,
+            From = "Jim",
+            Subject = "Hello 2",
+            Body = "How are you?",
+            Date = DateTime.Now
         },
-        new Message
+        new Mail
         {
-            From = "John Doe",
-            Subject = "Hello World 3",
-            Body = "This is the third test message from today",
-            Date = DateTime.Today,
+            From = "Jill",
+            Subject = "Hello 3",
+            Body = "How are you?",
+            Date = DateTime.Now
+        },
+        new Mail
+        {
+            From = "Jane",
+            Subject = "Hello 4",
+            Body = "How are you?",
+            Date = DateTime.Now
         },
     };
-
-    public IList<Message> VisibleEmails => Emails.Where(e => !e.Deleted).ToList();
-
-    public int MessagesCount => Emails.Count;
-
+    
     public MainPage()
     {
         InitializeComponent();
-        
+
         BindingContext = this;
     }
 }
