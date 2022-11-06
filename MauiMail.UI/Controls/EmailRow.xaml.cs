@@ -18,16 +18,19 @@ public partial class EmailRow : ContentView
         var emailRow = (EmailRow) bindable;
         
         if (email == null) return;
-
-#if MACCATALYST || WINDOWS
-        var desktopView = new DesktopEmailRow();
-        desktopView.BindingContext = email;
-        emailRow.Content = desktopView;
-#else
-        var mobileEmailRow = new MobileEmailRow();
-        mobileEmailRow.BindingContext = email;
-        emailRow.Content = mobileEmailRow;
-#endif
+        
+        if (DeviceInfo.Current.Idiom == DeviceIdiom.Desktop)
+        {
+            var desktopView = new DesktopEmailRow();
+            desktopView.BindingContext = email;
+            emailRow.Content = desktopView;
+        }
+        else
+        {
+            var mobileEmailRow = new MobileEmailRow();
+            mobileEmailRow.BindingContext = email;
+            emailRow.Content = mobileEmailRow;
+        }
     }
 
     public EmailRow()
